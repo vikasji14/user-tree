@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
   import { useNavigate } from "react-router-dom";
 import { deleteUser, updateUser } from "../redux/userSlice";
+import { toast } from "react-toastify";
 
 const UserTable = () => {
   const users = useSelector((state) => state.users);
@@ -54,12 +55,14 @@ const UserTable = () => {
   const handleUpdateUser = (e) => {
     e.preventDefault();
     dispatch(updateUser(editForm));
+    toast.success("Update successfully!")
     closeModal();
   };
 
   // Handle delete user
   const handleDeleteUser = () => {
-    dispatch(deleteUser(selectedUser.id));
+    dispatch(deleteUser(selectedUser.id)); 
+    toast.error("Delete successfully!") 
     closeModal();
   };
 
@@ -153,10 +156,22 @@ const UserTable = () => {
               </>
             ) : (
               <form onSubmit={handleUpdateUser} className="flex flex-col gap-3">
+                <span className="flex flex-col gap-1">
+                <label className="font-bold">Name</label>
                 <input type="text" name="name" value={editForm.name} onChange={handleEditChange} className="border p-2 rounded" required />
+                </span>
+                <span className="flex flex-col gap-1">
+                <label className="font-bold">Email</label>
                 <input type="email" name="email" value={editForm.email} onChange={handleEditChange} className="border p-2 rounded" required />
+                </span>
+                <span className="flex flex-col gap-1">
+                <label className="font-bold">Phone Number</label>
                 <input type="text" name="phone" value={editForm.phone} onChange={handleEditChange} className="border p-2 rounded" required />
+                </span>
+                <span className="flex flex-col gap-1">
+                <label className="font-bold">Adhar Number</label>
                 <input type="text" name="aadhar" value={editForm.aadhar} onChange={handleEditChange} className="border p-2 rounded" required />
+                </span>
                 <div className="flex justify-end gap-3">
                   <button onClick={closeModal} type="button" className="bg-gray-300 px-4 py-2 rounded">
                     Cancel

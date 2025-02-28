@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../redux/userSlice";
+import { toast } from "react-toastify";
 
 const UserForm = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ const UserForm = () => {
 
     const newUser = { id: users.length + 1, ...form };
     dispatch(addUser(newUser));
+    toast.success("Add new user successfully" )
     setForm({ name: "", email: "", phone: "", aadhar: "", parent: "", position: "" });
     setErrors({});
   };
