@@ -10,7 +10,7 @@ const UserTable = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [sortField, setSortField] = useState("name");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState("desc");
   const [modalType, setModalType] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const [editForm, setEditForm] = useState({});
